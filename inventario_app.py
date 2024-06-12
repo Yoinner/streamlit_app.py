@@ -21,6 +21,24 @@ def buscar_productos(query):
 # Título de la aplicación
 st.title('Inventario del Almacén')
 
+# Fondo de la aplicación
+st.markdown(
+    """
+    <style>
+    .main {
+        background-color: #f5f5f5;
+        background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/memphis-mini-dark.png');
+        color: black;
+    }
+    .stTextInput > div > div > input {
+        background-color: #f0f0f0;
+        color: black;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Campo de búsqueda
 query = st.text_input('Buscar producto...', '')
 
@@ -30,9 +48,10 @@ if query:
     if not resultados.empty:
         for idx, row in resultados.iterrows():
             st.write(f"**Nombre del Producto:** {row['Nombre del Producto']}")
-            st.write(f"**Stock Actual:** {row['Stock Actual']}")
+            st.write(f"**Cantidad Disponible:** {row['Stock Actual']}")
             st.write(f"**Precio de Compra:** {row['Precio de Compra']}")
             st.write(f"**Precio de Venta:** {row['Precio de Venta']}")
+            st.write(f"**Ubicación:** {row['Ubicación']}")
             st.write("---")
     else:
         st.write("No se encontraron productos.")

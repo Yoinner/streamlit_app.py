@@ -8,7 +8,7 @@ google_sheets_url = 'https://docs.google.com/spreadsheets/d/1Y0MQArGYk4k0UD1PQwI
 csv_export_url = google_sheets_url.replace('/edit?usp=sharing', '/gviz/tq?tqx=out:csv')
 
 # Función para cargar datos desde Google Sheets
-@st.cache_data
+@st.cache
 def load_data(url):
     return pd.read_csv(url)
 
@@ -23,23 +23,17 @@ st.title('Inventario del Almacén')
 
 # Fondo de la aplicación
 st.markdown(
-    f"""
+    """
     <style>
-    .stApp {{
-        background-image: url('https://raw.githubusercontent.com/Yoinner/streamlit_app.py/main/e7cb46959b55a91ff0c9706c1a46e481.jpg');
-        background-size: cover;
-        color: white;
-    }}
-    .stTextInput > div > div > input {{
-        background-color: rgba(255, 255, 255, 0.8);
+    .main {
+        background-color: #f5f5f5;
+        background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/memphis-mini-dark.png');
         color: black;
-    }}
-    .stMarkdown {{
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 10px;
-        border-radius: 10px;
-        color: white;
-    }}
+    }
+    .stTextInput > div > div > input {
+        background-color: #f0f0f0;
+        color: black;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -53,13 +47,11 @@ if query:
     resultados = buscar_productos(query)
     if not resultados.empty:
         for idx, row in resultados.iterrows():
-            st.markdown(f"""
-                **Nombre del Producto:** {row['Nombre del Producto']}  
-                **Cantidad Disponible:** {row['Stock Actual']}  
-                **Precio de Compra:** {row['Precio de Compra']}  
-                **Precio de Venta:** {row['Precio de Venta']}  
-                **Ubicación:** {row['Ubicación']}  
-                ---
-            """)
+            st.write(f"**Nombre del Producto:** {row['Nombre del Producto']}")
+            st.write(f"**Cantidad Disponible:** {row['Stock Actual']}")
+            st.write(f"**Precio de Compra:** {row['Precio de Compra']}")
+            st.write(f"**Precio de Venta:** {row['Precio de Venta']}")
+            st.write(f"**Ubicación:** {row['Ubicación']}")
+            st.write("---")
     else:
         st.write("No se encontraron productos.")

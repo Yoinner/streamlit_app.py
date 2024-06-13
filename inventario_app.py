@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Enlace de Google Sheets
-google_sheets_url = 'https://docs.google.com/spreadsheets/d/1Y0MQArGYk4k0UD1PQwIvcbgGdpSLZQGP/edit?usp=sharing'
+google_sheets_url = 'https://docs.google.com/spreadsheets/d/1Y0MQArGYk4k0UD1PQwIvcbgGdpSLZQGP/edit?usp=sharing&ouid=104131502310043866764&rtpof=true&sd=true'
 
 # Convertir el enlace de Google Sheets a un enlace exportable en formato CSV
 csv_export_url = google_sheets_url.replace('/edit?usp=sharing', '/gviz/tq?tqx=out:csv')

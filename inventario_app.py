@@ -20,30 +20,6 @@ def buscar_productos(query):
 # Título de la aplicación
 st.title('Inventario del Almacén')
 
-# Fondo de la aplicación
-st.markdown(
-    """
-    <style>
-    .main {
-        background-image: url('https://raw.githubusercontent.com/Yoinner/streamlit_app.py/main/abstract-grey-background-poster-with-dynamic-design-vector.jpg');
-        background-size: cover;
-        color: white;
-    }
-    .stTextInput > div > div > input {
-        background-color: rgba(255, 255, 255, 0.8);
-        color: black;
-    }
-    .stMarkdown {
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 10px;
-        border-radius: 10px;
-        color: white;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Campo de búsqueda
 query = st.text_input('Buscar producto...', '')
 

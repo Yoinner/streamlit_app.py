@@ -7,9 +7,15 @@ google_sheets_url = 'https://docs.google.com/spreadsheets/d/1Y0MQArGYk4k0UD1PQwI
 # Convertir el enlace de Google Sheets a un enlace exportable en formato CSV
 csv_export_url = google_sheets_url.replace('/edit?usp=sharing', '/gviz/tq?tqx=out:csv')
 
-# Función para cargar datos desde Google Sheets sin usar cache
+# Función para cargar datos desde Google Sheets
+@st.cache
 def load_data(url):
     return pd.read_csv(url)
+
+# Botón para actualizar los datos
+if st.button('Actualizar datos'):
+    st.cache.clear()
+    st.success('Datos actualizados correctamente')
 
 data = load_data(csv_export_url)
 
@@ -20,15 +26,10 @@ def buscar_productos(query):
 # Título de la aplicación
 st.title('Inventario del Almacén')
 
-# Fondo de la aplicación
+# Estilo para el campo de búsqueda
 st.markdown(
     """
     <style>
-    .main {
-        background-color: #f5f5f5;
-        background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/memphis-mini-dark.png');
-        color: black;
-    }
     .stTextInput > div > div > input {
         background-color: #add8e6; /* Azul claro para resaltar el campo de búsqueda */
         color: black;

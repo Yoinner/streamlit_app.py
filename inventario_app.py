@@ -7,7 +7,8 @@ google_sheets_url = 'https://docs.google.com/spreadsheets/d/1Y0MQArGYk4k0UD1PQwI
 # Convertir el enlace de Google Sheets a un enlace exportable en formato CSV
 csv_export_url = google_sheets_url.replace('/edit?usp=sharing', '/gviz/tq?tqx=out:csv')
 
-# Función para cargar datos desde Google Sheets sin usar cache
+# Función para cargar datos desde Google Sheets
+@st.cache
 def load_data(url):
     return pd.read_csv(url)
 
@@ -20,12 +21,17 @@ def buscar_productos(query):
 # Título de la aplicación
 st.title('Inventario del Almacén')
 
-# Campo de búsqueda con estilo personalizado
+# Fondo de la aplicación
 st.markdown(
     """
     <style>
+    .main {
+        background-color: #f5f5f5;
+        background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/memphis-mini-dark.png');
+        color: black;
+    }
     .stTextInput > div > div > input {
-        background-color: #add8e6;
+        background-color: #f0f0f0;
         color: black;
     }
     </style>
@@ -41,13 +47,11 @@ if query:
     resultados = buscar_productos(query)
     if not resultados.empty:
         for idx, row in resultados.iterrows():
-            st.markdown(f"""
-                **Nombre del Producto:** {row['Nombre del Producto']}  
-                **Cantidad Disponible:** {row['Stock Actual']}  
-                **Precio de Compra:** {row['Precio de Compra']}  
-                **Precio de Venta:** {row['Precio de Venta']}  
-                **Ubicación:** {row['Ubicación']}  
-                ---
-            """)
+            st.write(f"**Nombre del Producto:** {row['Nombre del Producto']}")
+            st.write(f"**Cantidad Disponible:** {row['Stock Actual']}")
+            st.write(f"**Precio de Compra:** {row['Precio de Compra']}")
+            st.write(f"**Precio de Venta:** {row['Precio de Venta']}")
+            st.write(f"**Ubicación:** {row['Ubicación']}")
+            st.write("---")
     else:
         st.write("No se encontraron productos.")

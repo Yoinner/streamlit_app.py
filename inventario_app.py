@@ -20,6 +20,19 @@ def buscar_productos(query):
 # Título de la aplicación
 st.title('Inventario del Almacén')
 
+# Campo de búsqueda con estilo personalizado
+st.markdown(
+    """
+    <style>
+    .stTextInput > div > div > input {
+        background-color: #add8e6;
+        color: black;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Campo de búsqueda
 query = st.text_input('Buscar producto...', '')
 
